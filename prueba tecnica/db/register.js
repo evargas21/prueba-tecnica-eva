@@ -50,7 +50,7 @@ function loadData() {
                 <td>${doc.data().fecha_fin}</td>
                 <td>${doc.data().documento}</td>
                 <td>
-                    <button type="button" class="btn btn-danger px-4">
+                    <button type="button" class="btn btn-danger px-4" onclick="deleteIncapacidad('${doc.id}')">
                         <i class="fas fa-trash-alt" aria-hidden="true"></i>
                     </button>
                 </td>
@@ -73,8 +73,24 @@ function loadData() {
     });
 }
 
+function deleteIncapacidad(id) {
+    db.collection("incapacidad").doc(id).delete().then( () => {
+        alert('Eliminado con exíto')
+        loadData();
+    }).catch(error => {
+        alert("Error al Eliminar: ", error);
+    });
+}
+
+function signOut() {
+    firebase.auth().signOut()
+        .then(() => window.location.replace("login.html"))
+        .catch(error => console(error));
+}
+
 loadData()
 
-document.getElementById("registrar").addEventListener("click", () => {
-    saveData()
-})
+document.getElementById("registrar").addEventListener("click", () => saveData())
+
+document.getElementById("signOut").addEventListener("click", () => signOut())
+
