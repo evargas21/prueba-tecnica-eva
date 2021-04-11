@@ -9,10 +9,11 @@ var firebaseConfig = {
 //Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
+// sing in 
 function signIn() {
     const email = document.getElementById("loginName").value
     const password = document.getElementById("loginPassword").value
-    if (!email.length || !password.length ) {
+    if (!email.length || !password.length) {
         alert("Los campos estan vacios")
     } else {
         firebase.auth().signInWithEmailAndPassword(email, password)
@@ -27,12 +28,7 @@ function signIn() {
     }
 }
 
-function signOut() {
-    firebase.auth().signOut()
-        .then(() => window.location.replace("login.html"))
-        .catch(error => console(error));
-}
-
+// register user
 function registerUser() {
     const registerEmail = document.getElementById("registerEmail").value
     const registerPassword = document.getElementById("registerPassword").value
@@ -69,7 +65,5 @@ function registerUser() {
 }
 
 document.getElementById("login").addEventListener("click", () => signIn())
-
-// document.getElementById("signOut").addEventListener("click", () => signOut())
 
 document.getElementById("registerUserOne").addEventListener("click", () => registerUser())

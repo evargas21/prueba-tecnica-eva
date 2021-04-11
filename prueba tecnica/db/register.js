@@ -11,6 +11,8 @@ firebase.initializeApp(firebaseConfig);
 //initialize firestore
 const db = firebase.firestore()
 
+
+// Save data 
 function saveData() {
     const motivo = document.getElementById('motivo').value
     const fechaInicio = document.getElementById('fechaInicio').value
@@ -39,6 +41,8 @@ function saveData() {
     }
 
 }
+
+// Lead data 
 function loadData() {
     let tabla = document.getElementById('tblBody');
     tabla.innerHTML = ``;
@@ -73,8 +77,10 @@ function loadData() {
     });
 }
 
+
+// delete data 
 function deleteIncapacidad(id) {
-    db.collection("incapacidad").doc(id).delete().then( () => {
+    db.collection("incapacidad").doc(id).delete().then(() => {
         alert('Eliminado con exíto')
         loadData();
     }).catch(error => {
@@ -82,6 +88,8 @@ function deleteIncapacidad(id) {
     });
 }
 
+
+// sign out 
 function signOut() {
     firebase.auth().signOut()
         .then(() => window.location.replace("login.html"))
@@ -90,7 +98,9 @@ function signOut() {
 
 loadData()
 
+//button register click
 document.getElementById("registrar").addEventListener("click", () => saveData())
 
+//button sign out
 document.getElementById("signOut").addEventListener("click", () => signOut())
 
