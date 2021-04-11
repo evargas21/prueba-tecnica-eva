@@ -8,7 +8,7 @@ var firebaseConfig = {
 };
 //Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-
+// Eva me pela
 // sing in 
 function signIn() {
     const email = document.getElementById("loginName").value
