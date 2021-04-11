@@ -12,7 +12,7 @@ firebase.initializeApp(firebaseConfig);
 function signIn() {
     const email = document.getElementById("loginName").value
     const password = document.getElementById("loginPassword").value
-    if (email.length === 0 || password.length === 0) {
+    if (!email.length || !password.length ) {
         alert("Los campos estan vacios")
     } else {
         firebase.auth().signInWithEmailAndPassword(email, password)
@@ -20,8 +20,8 @@ function signIn() {
                 window.location.replace("index.html");
             })
             .catch(error => {
-                var errorCode = error.code;
-                var errorMessage = error.message;
+                let errorCode = error.code;
+                let errorMessage = error.message;
                 alert(errorMessage)
             });
     }
@@ -38,7 +38,7 @@ function registerUser() {
     const registerPassword = document.getElementById("registerPassword").value
     const repeatPassword = document.getElementById("registerRepeatPassword").value
     const registerSelect = document.getElementById("registerSelect").value
-    if (registerEmail.length === 0 || registerPassword.length === 0 || repeatPassword.length === 0 || registerSelect === "null") {
+    if (!registerEmail.length || !registerPassword.length || !repeatPassword.length || registerSelect === "null") {
         alert("Los campos estan vacios")
     } else if (registerPassword != repeatPassword) {
         alert("la contraseña no coincide")
@@ -60,8 +60,8 @@ function registerUser() {
                 // ...
             })
             .catch((error) => {
-                var errorCode = error.code;
-                var errorMessage = error.message;
+                let errorCode = error.code;
+                let errorMessage = error.message;
                 alert(errorMessage)
                 // ..
             });
